@@ -1,0 +1,122 @@
+/* style.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #333;
+  --card-bg: #fff;
+}
+
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: #f1f1f1;
+  --card-bg: #1e1e1e;
+}
+
+.header {
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.container {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid var(--text-color);
+}
+
+.contact p {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #4f46e5;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* script.js */
+const projects = [
+  { name: "Personal Portfolio Website", platform: "GitHub Pages", link: "https://hetshahportfolio.com" },
+  { name: "Embedded AI for Fault Detection in IoT", platform: "ESP32/Raspberry Pi", link: "https://github.com/hetshah/embedded-ai-iot" },
+  { name: "Triband Square Slot Antenna Design", platform: "Ansys", link: "https://hetshahprojects.com/antenna-design" },
+  { name: "CPU Design in Multisim/Logisim", platform: "Logisim", link: "https://github.com/hetshah/cpu-design" },
+  { name: "Astable Multivibrator with 555 Timer", platform: "Analog Circuit Design Lab", link: "https://hetshahprojects.com/astable-multivibrator" },
+];
+
+const projectList = document.getElementById("project-list");
+
+projects.forEach((project) => {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${project.name}</td>
+    <td>${project.platform}</td>
+    <td><a href="${project.link}" target="_blank">Visit</a></td>
+  `;
+  projectList.appendChild(row);
+});
+
+// Dark mode toggle
+const toggleButton = document.getElementById("theme-toggle");
+toggleButton.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  toggleButton.innerHTML = document.body.classList.contains("dark-mode")
+    ? '<i class="fas fa-sun"></i>'
+    : '<i class="fas fa-moon"></i>';
+});
